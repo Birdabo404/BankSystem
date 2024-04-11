@@ -1,0 +1,6 @@
+First name: Clyde
+ Last name: Heinrich
+ Age: 21
+ Phone number: 123123123
+ Username: Birdabo
+ Password: Test123

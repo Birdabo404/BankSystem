@@ -6,7 +6,10 @@
 
 void logFunc(){
 
-    printf("welcome lol loggein success!");
+    printf("===================================");
+    printf("L O G I N \n");
+    printf("===================================");
+
 }
 
 void loadingBar(int total){
@@ -20,17 +23,7 @@ void loadingBar(int total){
     printf("\n");
 }
 
-void accountCreated(){
-
-    int totalProgress = 32;
-
-    printf("\n Please hold on... The system is processing your request.\n");
-    printf("\n");
-    loadingBar(totalProgress);
-
-    }
-
-char accCongrats(){
+char accountCongrats(){
 
     //TODO: include the username by reading in the accdata.txt
     printf("\nCongrats, You have succesfully created an account! \n" );
@@ -115,14 +108,18 @@ void Account(void){
 
 
     //TODO: fix writing on data.txt not working.
-    fprintf(fptr, sizeof(accData), 1, fptr);
+    fprintf(fptr, "First name: %s\n Last name: %s\n Age: %d\n Phone number: %d\n Username: %s\n Password: %s\n", accData.fname, accData.lname, accData.age, accData.number, accSecure.userName, accSecure.password );
 
     fclose(fptr);
 
-    //TODO: Write the data into a txt file after closing the fptry
+    int totalProgress = 32;
 
-    accountCreated(); //TODO: Improve func
-    accCongrats();
+    printf("\n Please hold on... The system is processing your request.\n");
+    printf("\n");
+    loadingBar(totalProgress);
+    printf("\n");
+    accountCongrats();
+
 
     } else{
         printf("\n Program is exiting...\n");
