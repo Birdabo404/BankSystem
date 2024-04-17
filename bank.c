@@ -3,12 +3,26 @@
 #include <unistd.h>
 
 
+char Dashboard(){
+    printf("\nTstetst");
+}
 
-void logFunc(){
+
+int loginFunc(){
 
     printf("===================================");
-    printf("L O G I N \n");
+    printf("\n         L O G I N\n");
     printf("===================================");
+
+    printf("\n");
+    FILE* fptr;
+    fptr = fopen("BankSystem/accountdata.txt", "r");
+    if (fptr == NULL){
+        printf("\n Broken page 404");
+        return main();
+    }
+        
+
 
 }
 
@@ -16,17 +30,26 @@ void loadingBar(int total){
    int i;
     printf("Processing: ");
     for (i = 0; i <= total; i++) {
-        printf("%c ", '$');
+        printf("%c", '$');
         fflush(stdout); 
         usleep(150000); 
     }
     printf("\n");
 }
-
+ 
 char accountCongrats(){
-
     //TODO: include the username by reading in the accdata.txt
-    printf("\nCongrats, You have succesfully created an account! \n" );
+
+    char loginUsername[256];
+    char line[256];
+
+    FILE* username_File = fopen("BankSystem/accountdata.txt", "r");
+
+    if (username_File == NULL){
+        printf("\nERROR!");
+        printf("\nusername fetch has failed, returning to main.");
+        return main();
+    }
 }
 
 void withDraw(){
@@ -103,11 +126,12 @@ void Account(void){
     scanf("%s", accSecure.userName);
 
     printf("\n *Password: ");
-    scanf("%s", accSecure.password);
+    
+
     system("clear");
 
 
-    //TODO: fix writing on data.txt not working.
+    //TODO: fix writing on data.txt not working. [FIXED]
     fprintf(fptr, "First name: %s\n Last name: %s\n Age: %d\n Phone number: %d\n Username: %s\n Password: %s\n", accData.fname, accData.lname, accData.age, accData.number, accSecure.userName, accSecure.password );
 
     fclose(fptr);
@@ -118,26 +142,26 @@ void Account(void){
     printf("\n");
     loadingBar(totalProgress);
     printf("\n");
+
     accountCongrats();
 
+
+    //TODO: done
+    char goBack;
+    printf("Do you wish login to your account? (Y/n) ");
+    scanf(" %c", &goBack);
+    system("clear");
+
+    //TODO: write a return to loginFunc();
+    //TODO: return func not doing anything. fix pls
+    if (goBack == 'Y' || 'y'){
+        loginFunc();
+    }
 
     } else{
         printf("\n Program is exiting...\n");
         exit(0);
     }
-
-    //TODO: done
-
-    char goBack;
-    printf("Do you wish login to your account? (Y/n) ");
-    scanf(" %c", &goBack);
-
-    //TODO: write a return to logFunc();
-    //TODO: return func not doing anything. fix pls
-    if (goBack == 'Y' || 'y'){
-        return;
-    }
-
 }
 
 
@@ -187,6 +211,11 @@ int main(){
         logIN();
         break;
         //TODO: create more function to call using switchcase
+
+        case 'E':
+        printf("Program is exiting, thank you!");
+        exit(0);
+        break;
 
         default:
         printf("\n Wrong Input, Try again!");
