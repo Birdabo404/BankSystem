@@ -3,15 +3,15 @@
 #include <unistd.h>
 
 
-char Dashboard(){
+void Dashboard(){
     printf("\nTstetst");
 }
 
 
-int loginFunc(){
+void loginFunc(){
 
     printf("===================================");
-    printf("\n         L O G I N\n");
+    printf("\n           L O G I N\n");
     printf("===================================");
 
     printf("\n");
@@ -19,13 +19,9 @@ int loginFunc(){
     fptr = fopen("BankSystem/accountdata.txt", "r");
     if (fptr == NULL){
         printf("\n Broken page 404");
-        return main();
-    }
         
-
-
+    }       
 }
-
 void loadingBar(int total){
    int i;
     printf("Processing: ");
@@ -37,7 +33,7 @@ void loadingBar(int total){
     printf("\n");
 }
  
-char accountCongrats(){
+void accountCongrats(){
     //TODO: include the username by reading in the accdata.txt
 
     char loginUsername[256];
@@ -47,8 +43,8 @@ char accountCongrats(){
 
     if (username_File == NULL){
         printf("\nERROR!");
-        printf("\nusername fetch has failed, returning to main.");
-        return main();
+        printf("\nusername fetch has failed, returning to main. \n");
+    
     }
 }
 
@@ -154,17 +150,19 @@ void Account(void){
 
     //TODO: write a return to loginFunc();
     //TODO: return func not doing anything. fix pls
-    if (goBack == 'Y' || 'y'){
-        loginFunc();
-    }
 
-    } else{
+    if (goBack == 'Y' || goBack == 'y'){
+        loginFunc();
+    } 
+    
+    }else{
         printf("\n Program is exiting...\n");
         exit(0);
     }
 }
 
 
+// main function - keep it clean. 
 int main(){
 
     struct accData01;
@@ -172,7 +170,7 @@ int main(){
 
     printf("\n");
     printf("=================================== \n");
-    printf("      WELCOME TO THE SUI BANK");
+    printf("||      WELCOME TO THE SUI BANK   ||");
     printf("\n");
     printf("=================================== \n");
 
@@ -180,9 +178,9 @@ int main(){
 
     char choice;
     printf("\n");
-    printf("[ A ] Create Account. \n");
-    printf("[ B ] Withdraw Money. \n");
-    printf("[ C ] Check Balance. \n");
+    printf("[ A ] Create an Account. \n");
+    printf("[ B ] Withdraw Your Money. \n");
+    printf("[ C ] Check Your Balance. \n");
     printf("[ D ] Login. \n");
     printf("[ E ] Exit. ");
 
@@ -208,17 +206,16 @@ int main(){
         break;
 
         case 'D':
-        logIN();
+        loginFunc();
         break;
-        //TODO: create more function to call using switchcase
 
         case 'E':
-        printf("Program is exiting, thank you!");
+        printf("The Program is exiting, thank you!");
         exit(0);
         break;
 
         default:
-        printf("\n Wrong Input, Try again!");
+        printf("\n Wrong Input, Please try again!");
         break;
     }
 
