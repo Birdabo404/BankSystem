@@ -17,8 +17,14 @@ void loginFunc(){
     printf("\n");
     FILE* fptr;
     fptr = fopen("BankSystem/accountdata.txt", "r");
+
+    printf("username: ");
+    //verify username and password through written data. 
+    printf("\n");
+    printf("pass: ");
     if (fptr == NULL){
-        printf("\n Broken page 404");
+        printf("\n");
+        printf("\nBroken page | 404 \n");
         
     }       
 }
@@ -26,7 +32,7 @@ void loadingBar(int total){
    int i;
     printf("Processing: ");
     for (i = 0; i <= total; i++) {
-        printf("%c", '$');
+        printf("%c ", '$');
         fflush(stdout); 
         usleep(150000); 
     }
@@ -50,16 +56,34 @@ void accountCongrats(){
 
 void withDraw(){
 
-    printf("Trasnferring Money innit\n");
+    printf("WORK IN PROGRESS | Maintenance \n");
+    printf("\n");
+
+    printf("\nPlease come back soon.\n");
     
 }
 
-void checkBalance(){
 
-    printf("\nChecking balance\n");
+int checkBalance(){
+        char loginprompt;
+        //prompt
+        printf("Sorry, You will need to login first. \n");
+        printf("Would you like to continue? (Y/n): ");
+        scanf(" %c", &loginprompt);
+
+        if (loginprompt == 'Y' || loginprompt == 'y'){
+            system("clear");
+            //call loginFunc();
+            loginFunc();
+            return 0;
+        } else{
+            exit(0);
+        }
+
+    return 0;
 }
 
-void logIN(void){
+void logIN(){
     printf("\n\n");
         printf("=================================");
         printf("\n      BANK ACCOUNT CREATION \n");
@@ -127,7 +151,6 @@ void Account(void){
     system("clear");
 
 
-    //TODO: fix writing on data.txt not working. [FIXED]
     fprintf(fptr, "First name: %s\n Last name: %s\n Age: %d\n Phone number: %d\n Username: %s\n Password: %s\n", accData.fname, accData.lname, accData.age, accData.number, accSecure.userName, accSecure.password );
 
     fclose(fptr);
@@ -170,7 +193,7 @@ int main(){
 
     printf("\n");
     printf("=================================== \n");
-    printf("||      WELCOME TO THE SUI BANK   ||");
+    printf("||      WELCOME TO THE BANK      ||");
     printf("\n");
     printf("=================================== \n");
 
@@ -187,35 +210,37 @@ int main(){
     printf("\n");
     printf("\nChoose your action: ");
     scanf("%c", &choice);
+    system("clear");
 
     switch(choice) {
+        case 'a':
         case 'A':
         Account();
         break;
 
-        case 'a':
-        Account();
-        break;
-
+        case 'b':
         case 'B':
         withDraw();
         break;
 
+        case 'c':
         case 'C':
         checkBalance();
         break;
 
+        case 'd':
         case 'D':
         loginFunc();
         break;
 
+        case 'e':
         case 'E':
         printf("The Program is exiting, thank you!");
         exit(0);
         break;
 
         default:
-        printf("\n Wrong Input, Please try again!");
+        printf("\n Input denied, Please try again!");
         break;
     }
 

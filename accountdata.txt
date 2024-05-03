@@ -1,6 +1,0 @@
-First name: Test
- Last name: Test
- Age: 21
- Phone number: -1430928461
- Username: Test
- Password: `p¥
